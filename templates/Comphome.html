@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CompanyInfo</title>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+</head>
+<body>
+<h1>Company Details</h1>
+<hr>
+{{MSG}}</hr>
+<div class="container">
+
+<form action="http://127.0.0.1:5000/save" method="post">
+    <div class="form-group">
+    <label for="inputid">Company ID</label>
+    <input type="text" class="form-control" id="inputid" placeholder="Eneter company ID" name="compId" value="{{dc.compId}}" readonly>
+  </div>
+
+
+    <div class="form-group">
+      <label for="inputPassword4">Comapany Name</label>
+      <input type="text" class="form-control" id="inputPassword4" placeholder="Enter Company Name" name="compName" value="{{dc.compName}}">
+    </div>
+
+    <div class="form-group">
+    <label for="inputid1">Company Type</label><br/>
+    Small_Scale : <input type="radio" align="left" class="form-control" id="inputid1"  name="egen" value="S"> <br>
+    MNC : <input type="radio" align="left" class="form-control" id="inputid2" name="egen" value="M">
+    </div>
+
+    <div class="form-group">
+      <label for="inputEmail4">Company Profit</label>
+      <input type="text" class="form-control" id="inputEmail4" placeholder="Enter Profit" name="compProf" value="{{dc.compProf}}">
+    </div>
+    <!--
+    <div class="form-group col-md-4">
+      <label for="inputState">Skills</label>
+      <select id="inputState" class="form-control">
+        <option selected>Choose...</option>
+        <option value="J">Java</option>
+		<option value="P">Python</option>
+		<option value='C'>CProg</option>
+
+      </select>
+    </div>-->
+
+  <!--<div class="form-group">
+    <div class="form-check">
+      <input class="form-check-input" type="checkbox" id="gridCheck">
+      <label class="form-check-label" for="gridCheck">
+        Check me out
+      </label>
+    </div>
+  </div>-->
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+
+    <table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">CompanyID</th>
+      <th scope="col">CompanyName</th>
+      <th scope="col">CompanyProfit</th>
+
+    </tr>
+  </thead>
+        {% for d in ccmp %}
+  <tbody>
+    <tr>
+      <th scope="row">{{d.compId}}</th>
+      <td>{{d.compName}}</td>
+      <td>{{d.compProf}}</td>
+      <td>
+        <a href="/cmp/edit/{{d.compId}}">EDIT</a>   | <a href="/cmp/delete/{{d.compId}}">DELETE</a>
+
+      </td>
+    </tr>
+       </tbody>
+        {% endfor %}
+</table>
+
+
+</div>
+</body>
+</html>
